@@ -1,0 +1,50 @@
+cff-version: 1.2.0
+message: "If you use CASIMIR, please cite it as below. The manuscript describing the model is not yet published, and this file will be updated with the article reference once it is."
+type: software
+title: "CASIMIR: An Open Pediatric Model for Whole-Body T1-Weighted MRI Anatomy Segmentation"
+abstract: "CASIMIR (Child Anatomy Segmentation In MRI with Increased Robustness) is a 2D nnU-Net v2 model that segments six visceral organs and seven skeletal structures in pediatric and young-adult whole-body T1-weighted MRI, paired structures labeled by side."
+version: "1.0.0"
+date-released: "2026-09-28"
+license: Apache-2.0
+repository-code: "https://github.com/fjhorvath/casimir"
+url: "https://huggingface.co/fjhorvath/casimir"
+keywords:
+  - medical imaging
+  - MRI
+  - whole-body imaging
+  - image segmentation
+  - pediatrics
+  - nnU-Net
+authors:
+  - family-names: Horvath
+    given-names: Felix J.
+    orcid: "https://orcid.org/0009-0005-6738-3979"
+    affiliation: "Department of Radiology, Stanford University School of Medicine, and Medical Faculty Heidelberg, Heidelberg University"
+  - family-names: Barrow
+    given-names: Michael J.
+    orcid: "https://orcid.org/0000-0002-9000-0543"
+    affiliation: "Department of Radiology, Stanford University School of Medicine"
+  - family-names: Singh
+    given-names: Shashi B.
+    orcid: "https://orcid.org/0000-0002-5536-0869"
+    affiliation: "Department of Radiology, Stanford University School of Medicine"
+  - family-names: Lokesha
+    given-names: Yashas U.
+    orcid: "https://orcid.org/0000-0002-3397-4309"
+    affiliation: "Department of Radiology, Stanford University School of Medicine"
+  - family-names: Okpokpo
+    given-names: Darlene
+    orcid: "https://orcid.org/0009-0003-9724-8255"
+    affiliation: "Department of Radiology, Stanford University School of Medicine"
+  - family-names: Sivanandam
+    given-names: Sharanya
+    orcid: "https://orcid.org/0000-0002-3430-4577"
+    affiliation: "Department of Radiology, Stanford University School of Medicine"
+  - family-names: Gatidis
+    given-names: Sergios
+    orcid: "https://orcid.org/0000-0002-6928-4967"
+    affiliation: "Department of Radiology, Stanford University School of Medicine"
+  - family-names: Daldrup-Link
+    given-names: Heike E.
+    orcid: "https://orcid.org/0000-0002-4929-819X"
+    affiliation: "Departments of Radiology and Pediatrics, Stanford University School of Medicine"

@@ -1,0 +1,26 @@
+{
+  "description": "Label values in CASIMIR output.",
+  "labels": {
+    "background": 0,
+    "fibulaLeft": 1,
+    "fibulaRight": 2,
+    "femurLeft": 3,
+    "femurRight": 4,
+    "tibiaLeft": 5,
+    "tibiaRight": 6,
+    "spine": 7,
+    "liver": 8,
+    "lungLeft": 9,
+    "lungRight": 10,
+    "sacrum": 11,
+    "spleen": 12,
+    "humerusLeft": 13,
+    "humerusRight": 14,
+    "heart": 15,
+    "urinaryBladder": 16,
+    "pelvisLeft": 17,
+    "pelvisRight": 18,
+    "kidneyLeft": 19,
+    "kidneyRight": 20
+  }
+}

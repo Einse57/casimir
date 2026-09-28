@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "casimir"
+version = "1.0.0"
+description = "Pediatric whole-body T1-weighted MRI anatomy segmentation, six visceral organs and seven skeletal structures, nnU-Net v2"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Healthcare Industry",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+dependencies = [
+    "nnunetv2 @ git+https://github.com/MIC-DKFZ/nnUNet.git@fee8c2db4a52405389eb5d3c4512bd2f654ab999",
+    "torch>=2.1.2",
+    "numpy",
+    "SimpleITK",
+    "nibabel",
+    "huggingface_hub",
+]
+
+[project.scripts]
+casimir = "casimir.main:main"
+
+[project.urls]
+Homepage = "https://github.com/fjhorvath/casimir"
+Weights = "https://huggingface.co/fjhorvath/casimir"
+"Bug Tracker" = "https://github.com/fjhorvath/casimir/issues"
+
+[tool.setuptools.packages.find]
+include = ["casimir*"]
+
+[tool.setuptools.package-data]
+casimir = ["labels.json"]
