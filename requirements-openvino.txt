@@ -1,0 +1,6 @@
+# Overlay for OpenVINO / ONNX path (install after `pip install -e .`)
+openvino>=2024.0,<2027
+onnx>=1.16
+onnxruntime>=1.18
+onnxscript>=0.1
+psutil>=5.9

@@ -16,3 +16,18 @@ venv/
 *.nii
 *.nii.gz
 segmentations/
+
+# OpenVINO / local smoke artifacts
+.venv/
+weights_local/
+openvino_models/*.onnx
+openvino_models/*.onnx.data
+openvino_models/*.bin
+openvino_models/*.xml
+data/smoke/
+data/ref_out/
+data/ov_out/
+data/ort_out/
+data/bench_*/
+__pycache__/
+*.pyc

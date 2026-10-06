@@ -115,3 +115,9 @@ CASIMIR is built on nnU-Net, please also cite
 
 This work was supported by a grant from the National Cancer Institute, grant number R01 CA269231.\
 Felix J. Horvath was supported by a travel grant from the Rolf W. Günther Foundation for Radiological Sciences.
+
+## OpenVINO (experimental)
+
+See [OPENVINO.md](OPENVINO.md) for ONNX/OpenVINO export, `--device CPU|GPU|NPU` inference,
+agreement checks, and the box bench script. This is a fork experiment aimed at beating the
+~4 min/exam M2 Pro CPU baseline on later Core/Xeon runs.
