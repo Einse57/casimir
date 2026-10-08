@@ -28,6 +28,15 @@ dependencies = [
     "huggingface_hub",
 ]
 
+[project.optional-dependencies]
+# Optional OpenVINO inference path (casimir_ov, see OPENVINO.md). psutil is only used by
+# scripts/bench_casimir.py.
+openvino = [
+    "openvino>=2024.0",
+    "onnx>=1.16",
+    "psutil>=5.9",
+]
+
 [project.scripts]
 casimir = "casimir.main:main"
 
