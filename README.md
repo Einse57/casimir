@@ -115,3 +115,10 @@ CASIMIR is built on nnU-Net, please also cite
 
 This work was supported by a grant from the National Cancer Institute, grant number R01 CA269231.\
 Felix J. Horvath was supported by a travel grant from the Rolf W. Günther Foundation for Radiological Sciences.
+
+## OpenVINO (experimental)
+
+An optional OpenVINO inference path for Intel CPU, GPU and NPU is described in
+[OPENVINO.md](OPENVINO.md), with the hardware it was tested on and its agreement with the
+default PyTorch path. Install it with `pip install -e ".[openvino]"`; the default inference
+does not need it.

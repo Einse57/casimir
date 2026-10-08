@@ -1,0 +1,1382 @@
+{
+ "case": "TotalSegmentator MRI dataset v3.0.0, s0987 (CC BY 4.0, doi:10.5281/zenodo.22688334)",
+ "shape": [
+  256,
+  208,
+  400
+ ],
+ "date": "2026-10-07",
+ "hosts": {
+  "Intel Core Ultra 9 285H": {
+   "software": {
+    "os": "Windows 11",
+    "python": "3.12.9",
+    "torch": "2.14.1+cpu",
+    "openvino": "2026.4.1-22982-e213a147257-releases/2026/4"
+   },
+   "logical_cpus": 16,
+   "agreement_vs_pytorch_cpu": {
+    "ov_CPU": {
+     "voxel_agree": 0.9999999530498798,
+     "voxels_differing": 1,
+     "foreground_voxel_agree": 0.9999936293965127,
+     "mean_dice_present": 0.9999990672494492,
+     "min_dice_present": 0.9999832104900858,
+     "n_present": 18,
+     "per_label": {
+      "fibulaLeft": {
+       "label": 1,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "fibulaRight": {
+       "label": 2,
+       "dice": 1.0,
+       "ref_voxels": 423,
+       "pred_voxels": 423
+      },
+      "femurLeft": {
+       "label": 3,
+       "dice": 1.0,
+       "ref_voxels": 517,
+       "pred_voxels": 517
+      },
+      "femurRight": {
+       "label": 4,
+       "dice": 1.0,
+       "ref_voxels": 195,
+       "pred_voxels": 195
+      },
+      "tibiaLeft": {
+       "label": 5,
+       "dice": 1.0,
+       "ref_voxels": 31,
+       "pred_voxels": 31
+      },
+      "tibiaRight": {
+       "label": 6,
+       "dice": 1.0,
+       "ref_voxels": 655,
+       "pred_voxels": 655
+      },
+      "spine": {
+       "label": 7,
+       "dice": 1.0,
+       "ref_voxels": 7922,
+       "pred_voxels": 7922
+      },
+      "liver": {
+       "label": 8,
+       "dice": 1.0,
+       "ref_voxels": 61548,
+       "pred_voxels": 61548
+      },
+      "lungLeft": {
+       "label": 9,
+       "dice": 0.9999832104900858,
+       "ref_voxels": 29780,
+       "pred_voxels": 29781
+      },
+      "lungRight": {
+       "label": 10,
+       "dice": 1.0,
+       "ref_voxels": 37427,
+       "pred_voxels": 37427
+      },
+      "sacrum": {
+       "label": 11,
+       "dice": 1.0,
+       "ref_voxels": 866,
+       "pred_voxels": 866
+      },
+      "spleen": {
+       "label": 12,
+       "dice": 1.0,
+       "ref_voxels": 650,
+       "pred_voxels": 650
+      },
+      "humerusLeft": {
+       "label": 13,
+       "dice": 1.0,
+       "ref_voxels": 9,
+       "pred_voxels": 9
+      },
+      "humerusRight": {
+       "label": 14,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "heart": {
+       "label": 15,
+       "dice": 1.0,
+       "ref_voxels": 8760,
+       "pred_voxels": 8760
+      },
+      "urinaryBladder": {
+       "label": 16,
+       "dice": 1.0,
+       "ref_voxels": 4159,
+       "pred_voxels": 4159
+      },
+      "pelvisLeft": {
+       "label": 17,
+       "dice": 1.0,
+       "ref_voxels": 1672,
+       "pred_voxels": 1672
+      },
+      "pelvisRight": {
+       "label": 18,
+       "dice": 1.0,
+       "ref_voxels": 845,
+       "pred_voxels": 845
+      },
+      "kidneyLeft": {
+       "label": 19,
+       "dice": 1.0,
+       "ref_voxels": 1024,
+       "pred_voxels": 1024
+      },
+      "kidneyRight": {
+       "label": 20,
+       "dice": 1.0,
+       "ref_voxels": 487,
+       "pred_voxels": 487
+      }
+     }
+    },
+    "ov_GPU": {
+     "voxel_agree": 1.0,
+     "voxels_differing": 0,
+     "foreground_voxel_agree": 1.0,
+     "mean_dice_present": 1.0,
+     "min_dice_present": 1.0,
+     "n_present": 18,
+     "per_label": {
+      "fibulaLeft": {
+       "label": 1,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "fibulaRight": {
+       "label": 2,
+       "dice": 1.0,
+       "ref_voxels": 423,
+       "pred_voxels": 423
+      },
+      "femurLeft": {
+       "label": 3,
+       "dice": 1.0,
+       "ref_voxels": 517,
+       "pred_voxels": 517
+      },
+      "femurRight": {
+       "label": 4,
+       "dice": 1.0,
+       "ref_voxels": 195,
+       "pred_voxels": 195
+      },
+      "tibiaLeft": {
+       "label": 5,
+       "dice": 1.0,
+       "ref_voxels": 31,
+       "pred_voxels": 31
+      },
+      "tibiaRight": {
+       "label": 6,
+       "dice": 1.0,
+       "ref_voxels": 655,
+       "pred_voxels": 655
+      },
+      "spine": {
+       "label": 7,
+       "dice": 1.0,
+       "ref_voxels": 7922,
+       "pred_voxels": 7922
+      },
+      "liver": {
+       "label": 8,
+       "dice": 1.0,
+       "ref_voxels": 61548,
+       "pred_voxels": 61548
+      },
+      "lungLeft": {
+       "label": 9,
+       "dice": 1.0,
+       "ref_voxels": 29780,
+       "pred_voxels": 29780
+      },
+      "lungRight": {
+       "label": 10,
+       "dice": 1.0,
+       "ref_voxels": 37427,
+       "pred_voxels": 37427
+      },
+      "sacrum": {
+       "label": 11,
+       "dice": 1.0,
+       "ref_voxels": 866,
+       "pred_voxels": 866
+      },
+      "spleen": {
+       "label": 12,
+       "dice": 1.0,
+       "ref_voxels": 650,
+       "pred_voxels": 650
+      },
+      "humerusLeft": {
+       "label": 13,
+       "dice": 1.0,
+       "ref_voxels": 9,
+       "pred_voxels": 9
+      },
+      "humerusRight": {
+       "label": 14,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "heart": {
+       "label": 15,
+       "dice": 1.0,
+       "ref_voxels": 8760,
+       "pred_voxels": 8760
+      },
+      "urinaryBladder": {
+       "label": 16,
+       "dice": 1.0,
+       "ref_voxels": 4159,
+       "pred_voxels": 4159
+      },
+      "pelvisLeft": {
+       "label": 17,
+       "dice": 1.0,
+       "ref_voxels": 1672,
+       "pred_voxels": 1672
+      },
+      "pelvisRight": {
+       "label": 18,
+       "dice": 1.0,
+       "ref_voxels": 845,
+       "pred_voxels": 845
+      },
+      "kidneyLeft": {
+       "label": 19,
+       "dice": 1.0,
+       "ref_voxels": 1024,
+       "pred_voxels": 1024
+      },
+      "kidneyRight": {
+       "label": 20,
+       "dice": 1.0,
+       "ref_voxels": 487,
+       "pred_voxels": 487
+      }
+     }
+    },
+    "ov_NPU": {
+     "voxel_agree": 0.9999920654296875,
+     "voxels_differing": 169,
+     "foreground_voxel_agree": 0.9989240397532295,
+     "mean_dice_present": 0.9985238777107658,
+     "min_dice_present": 0.9948453608247423,
+     "n_present": 18,
+     "per_label": {
+      "fibulaLeft": {
+       "label": 1,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "fibulaRight": {
+       "label": 2,
+       "dice": 0.9976415094339622,
+       "ref_voxels": 423,
+       "pred_voxels": 425
+      },
+      "femurLeft": {
+       "label": 3,
+       "dice": 0.9980657640232108,
+       "ref_voxels": 517,
+       "pred_voxels": 517
+      },
+      "femurRight": {
+       "label": 4,
+       "dice": 0.9948453608247423,
+       "ref_voxels": 195,
+       "pred_voxels": 193
+      },
+      "tibiaLeft": {
+       "label": 5,
+       "dice": 1.0,
+       "ref_voxels": 31,
+       "pred_voxels": 31
+      },
+      "tibiaRight": {
+       "label": 6,
+       "dice": 0.9992372234935164,
+       "ref_voxels": 655,
+       "pred_voxels": 656
+      },
+      "spine": {
+       "label": 7,
+       "dice": 0.9991164962766629,
+       "ref_voxels": 7922,
+       "pred_voxels": 7924
+      },
+      "liver": {
+       "label": 8,
+       "dice": 0.9994557226297532,
+       "ref_voxels": 61548,
+       "pred_voxels": 61551
+      },
+      "lungLeft": {
+       "label": 9,
+       "dice": 0.9996978243352136,
+       "ref_voxels": 29780,
+       "pred_voxels": 29788
+      },
+      "lungRight": {
+       "label": 10,
+       "dice": 0.9996927064545005,
+       "ref_voxels": 37427,
+       "pred_voxels": 37420
+      },
+      "sacrum": {
+       "label": 11,
+       "dice": 0.9994229659549914,
+       "ref_voxels": 866,
+       "pred_voxels": 867
+      },
+      "spleen": {
+       "label": 12,
+       "dice": 0.9961449498843485,
+       "ref_voxels": 650,
+       "pred_voxels": 647
+      },
+      "humerusLeft": {
+       "label": 13,
+       "dice": 1.0,
+       "ref_voxels": 9,
+       "pred_voxels": 9
+      },
+      "humerusRight": {
+       "label": 14,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "heart": {
+       "label": 15,
+       "dice": 0.9992012779552716,
+       "ref_voxels": 8760,
+       "pred_voxels": 8768
+      },
+      "urinaryBladder": {
+       "label": 16,
+       "dice": 0.9989191785757175,
+       "ref_voxels": 4159,
+       "pred_voxels": 4168
+      },
+      "pelvisLeft": {
+       "label": 17,
+       "dice": 0.9997010463378176,
+       "ref_voxels": 1672,
+       "pred_voxels": 1673
+      },
+      "pelvisRight": {
+       "label": 18,
+       "dice": 0.9988179669030733,
+       "ref_voxels": 845,
+       "pred_voxels": 847
+      },
+      "kidneyLeft": {
+       "label": 19,
+       "dice": 0.997559785261103,
+       "ref_voxels": 1024,
+       "pred_voxels": 1025
+      },
+      "kidneyRight": {
+       "label": 20,
+       "dice": 0.9959100204498977,
+       "ref_voxels": 487,
+       "pred_voxels": 491
+      }
+     }
+    },
+    "ov_CPU_plugin_default": {
+     "voxel_agree": 0.9999999530498798,
+     "voxels_differing": 1,
+     "foreground_voxel_agree": 0.9999936293965127,
+     "mean_dice_present": 0.9999990672494492,
+     "min_dice_present": 0.9999832104900858,
+     "n_present": 18,
+     "per_label": {
+      "fibulaLeft": {
+       "label": 1,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "fibulaRight": {
+       "label": 2,
+       "dice": 1.0,
+       "ref_voxels": 423,
+       "pred_voxels": 423
+      },
+      "femurLeft": {
+       "label": 3,
+       "dice": 1.0,
+       "ref_voxels": 517,
+       "pred_voxels": 517
+      },
+      "femurRight": {
+       "label": 4,
+       "dice": 1.0,
+       "ref_voxels": 195,
+       "pred_voxels": 195
+      },
+      "tibiaLeft": {
+       "label": 5,
+       "dice": 1.0,
+       "ref_voxels": 31,
+       "pred_voxels": 31
+      },
+      "tibiaRight": {
+       "label": 6,
+       "dice": 1.0,
+       "ref_voxels": 655,
+       "pred_voxels": 655
+      },
+      "spine": {
+       "label": 7,
+       "dice": 1.0,
+       "ref_voxels": 7922,
+       "pred_voxels": 7922
+      },
+      "liver": {
+       "label": 8,
+       "dice": 1.0,
+       "ref_voxels": 61548,
+       "pred_voxels": 61548
+      },
+      "lungLeft": {
+       "label": 9,
+       "dice": 0.9999832104900858,
+       "ref_voxels": 29780,
+       "pred_voxels": 29781
+      },
+      "lungRight": {
+       "label": 10,
+       "dice": 1.0,
+       "ref_voxels": 37427,
+       "pred_voxels": 37427
+      },
+      "sacrum": {
+       "label": 11,
+       "dice": 1.0,
+       "ref_voxels": 866,
+       "pred_voxels": 866
+      },
+      "spleen": {
+       "label": 12,
+       "dice": 1.0,
+       "ref_voxels": 650,
+       "pred_voxels": 650
+      },
+      "humerusLeft": {
+       "label": 13,
+       "dice": 1.0,
+       "ref_voxels": 9,
+       "pred_voxels": 9
+      },
+      "humerusRight": {
+       "label": 14,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "heart": {
+       "label": 15,
+       "dice": 1.0,
+       "ref_voxels": 8760,
+       "pred_voxels": 8760
+      },
+      "urinaryBladder": {
+       "label": 16,
+       "dice": 1.0,
+       "ref_voxels": 4159,
+       "pred_voxels": 4159
+      },
+      "pelvisLeft": {
+       "label": 17,
+       "dice": 1.0,
+       "ref_voxels": 1672,
+       "pred_voxels": 1672
+      },
+      "pelvisRight": {
+       "label": 18,
+       "dice": 1.0,
+       "ref_voxels": 845,
+       "pred_voxels": 845
+      },
+      "kidneyLeft": {
+       "label": 19,
+       "dice": 1.0,
+       "ref_voxels": 1024,
+       "pred_voxels": 1024
+      },
+      "kidneyRight": {
+       "label": 20,
+       "dice": 1.0,
+       "ref_voxels": 487,
+       "pred_voxels": 487
+      }
+     }
+    }
+   },
+   "timing": {
+    "openvino_CPU": {
+     "backend": "openvino",
+     "compile_s": 0.258,
+     "first_run_s": 76.73,
+     "runs": {
+      "n": 5,
+      "mean_s": 76.9,
+      "p50_s": 76.867,
+      "min_s": 76.526,
+      "max_s": 77.356,
+      "stdev_s": 0.354
+     },
+     "sliding_window": {
+      "n": 5,
+      "mean_s": 54.637,
+      "p50_s": 54.545,
+      "min_s": 54.363,
+      "max_s": 55.236,
+      "stdev_s": 0.345
+     },
+     "all_runs_s": [
+      76.73,
+      76.601,
+      76.526,
+      76.867,
+      77.151,
+      77.356
+     ],
+     "peak_rss_mb": 8586.3,
+     "device_info": {
+      "device": "CPU",
+      "full_device_name": "Intel(R) Core(TM) Ultra 9 285H",
+      "INFERENCE_PRECISION_HINT": "<Type: 'float32'>",
+      "PERFORMANCE_HINT": "LATENCY",
+      "NUM_STREAMS": "1",
+      "INFERENCE_NUM_THREADS": "14",
+      "EXECUTION_DEVICES": "['CPU']"
+     }
+    },
+    "openvino_GPU": {
+     "backend": "openvino",
+     "compile_s": 0.351,
+     "first_run_s": 48.494,
+     "runs": {
+      "n": 5,
+      "mean_s": 48.877,
+      "p50_s": 48.362,
+      "min_s": 48.168,
+      "max_s": 51.16,
+      "stdev_s": 1.283
+     },
+     "sliding_window": {
+      "n": 5,
+      "mean_s": 26.038,
+      "p50_s": 26.476,
+      "min_s": 24.396,
+      "max_s": 26.518,
+      "stdev_s": 0.921
+     },
+     "all_runs_s": [
+      48.494,
+      48.189,
+      48.508,
+      48.168,
+      51.16,
+      48.362
+     ],
+     "peak_rss_mb": 8291.2,
+     "device_info": {
+      "device": "GPU",
+      "full_device_name": "Intel(R) Arc(TM) 140T GPU (32GB) (iGPU)",
+      "INFERENCE_PRECISION_HINT": "<Type: 'float32'>",
+      "PERFORMANCE_HINT": "PerformanceMode.LATENCY",
+      "NUM_STREAMS": "1",
+      "EXECUTION_DEVICES": "['GPU.0']"
+     }
+    },
+    "openvino_NPU": {
+     "backend": "openvino",
+     "compile_s": 0.198,
+     "first_run_s": 55.885,
+     "runs": {
+      "n": 5,
+      "mean_s": 58.161,
+      "p50_s": 57.622,
+      "min_s": 55.731,
+      "max_s": 62.229,
+      "stdev_s": 2.55
+     },
+     "sliding_window": {
+      "n": 5,
+      "mean_s": 33.982,
+      "p50_s": 34.055,
+      "min_s": 33.682,
+      "max_s": 34.226,
+      "stdev_s": 0.232
+     },
+     "all_runs_s": [
+      55.885,
+      55.731,
+      56.459,
+      62.229,
+      57.622,
+      58.764
+     ],
+     "peak_rss_mb": 8937.7,
+     "device_info": {
+      "device": "NPU",
+      "full_device_name": "Intel(R) AI Boost",
+      "INFERENCE_PRECISION_HINT": "<Type: 'float16'>",
+      "PERFORMANCE_HINT": "PerformanceMode.LATENCY",
+      "EXECUTION_DEVICES": "NPU"
+     }
+    },
+    "torch_cpu": {
+     "backend": "torch",
+     "compile_s": null,
+     "first_run_s": 113.611,
+     "runs": {
+      "n": 5,
+      "mean_s": 115.016,
+      "p50_s": 115.066,
+      "min_s": 114.119,
+      "max_s": 116.317,
+      "stdev_s": 0.869
+     },
+     "sliding_window": {
+      "n": 5,
+      "mean_s": 92.158,
+      "p50_s": 92.091,
+      "min_s": 92.0,
+      "max_s": 92.549,
+      "stdev_s": 0.227
+     },
+     "all_runs_s": [
+      113.611,
+      115.243,
+      116.317,
+      114.333,
+      114.119,
+      115.066
+     ],
+     "peak_rss_mb": 8234.6,
+     "device_info": {
+      "device": "cpu",
+      "torch_threads": 16
+     }
+    },
+    "torch_cpu_allthreads": {
+     "backend": "torch",
+     "compile_s": null,
+     "first_run_s": 122.996,
+     "runs": {
+      "n": 5,
+      "mean_s": 122.658,
+      "p50_s": 120.382,
+      "min_s": 118.589,
+      "max_s": 133.342,
+      "stdev_s": 6.042
+     },
+     "sliding_window": {
+      "n": 5,
+      "mean_s": 98.782,
+      "p50_s": 98.213,
+      "min_s": 96.74,
+      "max_s": 101.995,
+      "stdev_s": 1.993
+     },
+     "all_runs_s": [
+      122.996,
+      121.095,
+      118.589,
+      119.881,
+      133.342,
+      120.382
+     ],
+     "peak_rss_mb": 8333.8,
+     "device_info": {
+      "device": "cpu",
+      "torch_threads": 16
+     }
+    }
+   },
+   "compile_probe": [
+    {
+     "device": "CPU",
+     "mode": "default",
+     "compile_s": 0.293
+    },
+    {
+     "device": "CPU",
+     "mode": "default",
+     "compile_s": 0.291
+    },
+    {
+     "device": "CPU",
+     "mode": "default",
+     "compile_s": 0.289
+    },
+    {
+     "device": "GPU",
+     "mode": "default",
+     "compile_s": 0.494
+    },
+    {
+     "device": "GPU",
+     "mode": "default",
+     "compile_s": 0.497
+    },
+    {
+     "device": "GPU",
+     "mode": "default",
+     "compile_s": 0.488
+    },
+    {
+     "device": "NPU",
+     "mode": "default",
+     "compile_s": 0.597
+    },
+    {
+     "device": "NPU",
+     "mode": "default",
+     "compile_s": 0.549
+    },
+    {
+     "device": "NPU",
+     "mode": "default",
+     "compile_s": 0.562
+    },
+    {
+     "device": "NPU",
+     "mode": "bypass",
+     "compile_s": 1.942
+    },
+    {
+     "device": "NPU",
+     "mode": "bypass",
+     "compile_s": 1.939
+    },
+    {
+     "device": "NPU",
+     "mode": "bypass",
+     "compile_s": 1.935
+    }
+   ]
+  },
+  "Intel Core Ultra 7 265F": {
+   "software": {
+    "os": "Windows 11",
+    "python": "3.12.10",
+    "torch": "2.14.1+cpu",
+    "openvino": "2026.4.1-22982-e213a147257-releases/2026/4"
+   },
+   "logical_cpus": 20,
+   "agreement_vs_pytorch_cpu": {
+    "ov_CPU": {
+     "voxel_agree": 0.9999999060997596,
+     "voxels_differing": 2,
+     "foreground_voxel_agree": 0.9999872588741942,
+     "mean_dice_present": 0.9999986159341812,
+     "min_dice_present": 0.9999832104900858,
+     "n_present": 18,
+     "per_label": {
+      "fibulaLeft": {
+       "label": 1,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "fibulaRight": {
+       "label": 2,
+       "dice": 1.0,
+       "ref_voxels": 423,
+       "pred_voxels": 423
+      },
+      "femurLeft": {
+       "label": 3,
+       "dice": 1.0,
+       "ref_voxels": 517,
+       "pred_voxels": 517
+      },
+      "femurRight": {
+       "label": 4,
+       "dice": 1.0,
+       "ref_voxels": 195,
+       "pred_voxels": 195
+      },
+      "tibiaLeft": {
+       "label": 5,
+       "dice": 1.0,
+       "ref_voxels": 31,
+       "pred_voxels": 31
+      },
+      "tibiaRight": {
+       "label": 6,
+       "dice": 1.0,
+       "ref_voxels": 655,
+       "pred_voxels": 655
+      },
+      "spine": {
+       "label": 7,
+       "dice": 1.0,
+       "ref_voxels": 7922,
+       "pred_voxels": 7922
+      },
+      "liver": {
+       "label": 8,
+       "dice": 0.9999918763251745,
+       "ref_voxels": 61548,
+       "pred_voxels": 61549
+      },
+      "lungLeft": {
+       "label": 9,
+       "dice": 0.9999832104900858,
+       "ref_voxels": 29780,
+       "pred_voxels": 29781
+      },
+      "lungRight": {
+       "label": 10,
+       "dice": 1.0,
+       "ref_voxels": 37427,
+       "pred_voxels": 37427
+      },
+      "sacrum": {
+       "label": 11,
+       "dice": 1.0,
+       "ref_voxels": 866,
+       "pred_voxels": 866
+      },
+      "spleen": {
+       "label": 12,
+       "dice": 1.0,
+       "ref_voxels": 650,
+       "pred_voxels": 650
+      },
+      "humerusLeft": {
+       "label": 13,
+       "dice": 1.0,
+       "ref_voxels": 9,
+       "pred_voxels": 9
+      },
+      "humerusRight": {
+       "label": 14,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "heart": {
+       "label": 15,
+       "dice": 1.0,
+       "ref_voxels": 8760,
+       "pred_voxels": 8760
+      },
+      "urinaryBladder": {
+       "label": 16,
+       "dice": 1.0,
+       "ref_voxels": 4159,
+       "pred_voxels": 4159
+      },
+      "pelvisLeft": {
+       "label": 17,
+       "dice": 1.0,
+       "ref_voxels": 1672,
+       "pred_voxels": 1672
+      },
+      "pelvisRight": {
+       "label": 18,
+       "dice": 1.0,
+       "ref_voxels": 845,
+       "pred_voxels": 845
+      },
+      "kidneyLeft": {
+       "label": 19,
+       "dice": 1.0,
+       "ref_voxels": 1024,
+       "pred_voxels": 1024
+      },
+      "kidneyRight": {
+       "label": 20,
+       "dice": 1.0,
+       "ref_voxels": 487,
+       "pred_voxels": 487
+      }
+     }
+    },
+    "ov_NPU": {
+     "voxel_agree": 0.9999920654296875,
+     "voxels_differing": 169,
+     "foreground_voxel_agree": 0.9989240397532295,
+     "mean_dice_present": 0.9985238777107658,
+     "min_dice_present": 0.9948453608247423,
+     "n_present": 18,
+     "per_label": {
+      "fibulaLeft": {
+       "label": 1,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "fibulaRight": {
+       "label": 2,
+       "dice": 0.9976415094339622,
+       "ref_voxels": 423,
+       "pred_voxels": 425
+      },
+      "femurLeft": {
+       "label": 3,
+       "dice": 0.9980657640232108,
+       "ref_voxels": 517,
+       "pred_voxels": 517
+      },
+      "femurRight": {
+       "label": 4,
+       "dice": 0.9948453608247423,
+       "ref_voxels": 195,
+       "pred_voxels": 193
+      },
+      "tibiaLeft": {
+       "label": 5,
+       "dice": 1.0,
+       "ref_voxels": 31,
+       "pred_voxels": 31
+      },
+      "tibiaRight": {
+       "label": 6,
+       "dice": 0.9992372234935164,
+       "ref_voxels": 655,
+       "pred_voxels": 656
+      },
+      "spine": {
+       "label": 7,
+       "dice": 0.9991164962766629,
+       "ref_voxels": 7922,
+       "pred_voxels": 7924
+      },
+      "liver": {
+       "label": 8,
+       "dice": 0.9994557226297532,
+       "ref_voxels": 61548,
+       "pred_voxels": 61551
+      },
+      "lungLeft": {
+       "label": 9,
+       "dice": 0.9996978243352136,
+       "ref_voxels": 29780,
+       "pred_voxels": 29788
+      },
+      "lungRight": {
+       "label": 10,
+       "dice": 0.9996927064545005,
+       "ref_voxels": 37427,
+       "pred_voxels": 37420
+      },
+      "sacrum": {
+       "label": 11,
+       "dice": 0.9994229659549914,
+       "ref_voxels": 866,
+       "pred_voxels": 867
+      },
+      "spleen": {
+       "label": 12,
+       "dice": 0.9961449498843485,
+       "ref_voxels": 650,
+       "pred_voxels": 647
+      },
+      "humerusLeft": {
+       "label": 13,
+       "dice": 1.0,
+       "ref_voxels": 9,
+       "pred_voxels": 9
+      },
+      "humerusRight": {
+       "label": 14,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "heart": {
+       "label": 15,
+       "dice": 0.9992012779552716,
+       "ref_voxels": 8760,
+       "pred_voxels": 8768
+      },
+      "urinaryBladder": {
+       "label": 16,
+       "dice": 0.9989191785757175,
+       "ref_voxels": 4159,
+       "pred_voxels": 4168
+      },
+      "pelvisLeft": {
+       "label": 17,
+       "dice": 0.9997010463378176,
+       "ref_voxels": 1672,
+       "pred_voxels": 1673
+      },
+      "pelvisRight": {
+       "label": 18,
+       "dice": 0.9988179669030733,
+       "ref_voxels": 845,
+       "pred_voxels": 847
+      },
+      "kidneyLeft": {
+       "label": 19,
+       "dice": 0.997559785261103,
+       "ref_voxels": 1024,
+       "pred_voxels": 1025
+      },
+      "kidneyRight": {
+       "label": 20,
+       "dice": 0.9959100204498977,
+       "ref_voxels": 487,
+       "pred_voxels": 491
+      }
+     }
+    },
+    "ov_CPU_plugin_default": {
+     "voxel_agree": 0.9999999060997596,
+     "voxels_differing": 2,
+     "foreground_voxel_agree": 0.9999872588741942,
+     "mean_dice_present": 0.9999986159341812,
+     "min_dice_present": 0.9999832104900858,
+     "n_present": 18,
+     "per_label": {
+      "fibulaLeft": {
+       "label": 1,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "fibulaRight": {
+       "label": 2,
+       "dice": 1.0,
+       "ref_voxels": 423,
+       "pred_voxels": 423
+      },
+      "femurLeft": {
+       "label": 3,
+       "dice": 1.0,
+       "ref_voxels": 517,
+       "pred_voxels": 517
+      },
+      "femurRight": {
+       "label": 4,
+       "dice": 1.0,
+       "ref_voxels": 195,
+       "pred_voxels": 195
+      },
+      "tibiaLeft": {
+       "label": 5,
+       "dice": 1.0,
+       "ref_voxels": 31,
+       "pred_voxels": 31
+      },
+      "tibiaRight": {
+       "label": 6,
+       "dice": 1.0,
+       "ref_voxels": 655,
+       "pred_voxels": 655
+      },
+      "spine": {
+       "label": 7,
+       "dice": 1.0,
+       "ref_voxels": 7922,
+       "pred_voxels": 7922
+      },
+      "liver": {
+       "label": 8,
+       "dice": 0.9999918763251745,
+       "ref_voxels": 61548,
+       "pred_voxels": 61549
+      },
+      "lungLeft": {
+       "label": 9,
+       "dice": 0.9999832104900858,
+       "ref_voxels": 29780,
+       "pred_voxels": 29781
+      },
+      "lungRight": {
+       "label": 10,
+       "dice": 1.0,
+       "ref_voxels": 37427,
+       "pred_voxels": 37427
+      },
+      "sacrum": {
+       "label": 11,
+       "dice": 1.0,
+       "ref_voxels": 866,
+       "pred_voxels": 866
+      },
+      "spleen": {
+       "label": 12,
+       "dice": 1.0,
+       "ref_voxels": 650,
+       "pred_voxels": 650
+      },
+      "humerusLeft": {
+       "label": 13,
+       "dice": 1.0,
+       "ref_voxels": 9,
+       "pred_voxels": 9
+      },
+      "humerusRight": {
+       "label": 14,
+       "dice": null,
+       "ref_voxels": 0,
+       "pred_voxels": 0
+      },
+      "heart": {
+       "label": 15,
+       "dice": 1.0,
+       "ref_voxels": 8760,
+       "pred_voxels": 8760
+      },
+      "urinaryBladder": {
+       "label": 16,
+       "dice": 1.0,
+       "ref_voxels": 4159,
+       "pred_voxels": 4159
+      },
+      "pelvisLeft": {
+       "label": 17,
+       "dice": 1.0,
+       "ref_voxels": 1672,
+       "pred_voxels": 1672
+      },
+      "pelvisRight": {
+       "label": 18,
+       "dice": 1.0,
+       "ref_voxels": 845,
+       "pred_voxels": 845
+      },
+      "kidneyLeft": {
+       "label": 19,
+       "dice": 1.0,
+       "ref_voxels": 1024,
+       "pred_voxels": 1024
+      },
+      "kidneyRight": {
+       "label": 20,
+       "dice": 1.0,
+       "ref_voxels": 487,
+       "pred_voxels": 487
+      }
+     }
+    }
+   },
+   "timing": {
+    "openvino_CPU": {
+     "backend": "openvino",
+     "compile_s": 0.139,
+     "first_run_s": 84.859,
+     "runs": {
+      "n": 5,
+      "mean_s": 85.417,
+      "p50_s": 85.4,
+      "min_s": 84.846,
+      "max_s": 85.89,
+      "stdev_s": 0.379
+     },
+     "sliding_window": {
+      "n": 5,
+      "mean_s": 65.441,
+      "p50_s": 65.528,
+      "min_s": 64.973,
+      "max_s": 65.805,
+      "stdev_s": 0.307
+     },
+     "all_runs_s": [
+      84.859,
+      85.381,
+      85.569,
+      84.846,
+      85.89,
+      85.4
+     ],
+     "peak_rss_mb": 8741.0,
+     "device_info": {
+      "device": "CPU",
+      "full_device_name": "Intel(R) Core(TM) Ultra 7 265F",
+      "INFERENCE_PRECISION_HINT": "<Type: 'float32'>",
+      "PERFORMANCE_HINT": "LATENCY",
+      "NUM_STREAMS": "1",
+      "INFERENCE_NUM_THREADS": "8",
+      "EXECUTION_DEVICES": "['CPU']"
+     }
+    },
+    "openvino_NPU": {
+     "backend": "openvino",
+     "compile_s": 0.165,
+     "first_run_s": 49.577,
+     "runs": {
+      "n": 5,
+      "mean_s": 48.719,
+      "p50_s": 48.71,
+      "min_s": 48.59,
+      "max_s": 48.799,
+      "stdev_s": 0.085
+     },
+     "sliding_window": {
+      "n": 5,
+      "mean_s": 28.693,
+      "p50_s": 28.695,
+      "min_s": 28.649,
+      "max_s": 28.727,
+      "stdev_s": 0.029
+     },
+     "all_runs_s": [
+      49.577,
+      48.71,
+      48.794,
+      48.703,
+      48.799,
+      48.59
+     ],
+     "peak_rss_mb": 8342.9,
+     "device_info": {
+      "device": "NPU",
+      "full_device_name": "Intel(R) AI Boost",
+      "INFERENCE_PRECISION_HINT": "<Type: 'float16'>",
+      "PERFORMANCE_HINT": "PerformanceMode.LATENCY",
+      "EXECUTION_DEVICES": "NPU"
+     }
+    },
+    "torch_cpu": {
+     "backend": "torch",
+     "compile_s": null,
+     "first_run_s": 89.302,
+     "runs": {
+      "n": 5,
+      "mean_s": 94.751,
+      "p50_s": 95.106,
+      "min_s": 93.555,
+      "max_s": 95.489,
+      "stdev_s": 0.761
+     },
+     "sliding_window": {
+      "n": 5,
+      "mean_s": 75.094,
+      "p50_s": 75.433,
+      "min_s": 73.98,
+      "max_s": 75.79,
+      "stdev_s": 0.732
+     },
+     "all_runs_s": [
+      89.302,
+      94.478,
+      95.106,
+      93.555,
+      95.489,
+      95.129
+     ],
+     "peak_rss_mb": 8419.2,
+     "device_info": {
+      "device": "cpu",
+      "torch_threads": 20
+     }
+    },
+    "torch_cpu_allthreads": {
+     "backend": "torch",
+     "compile_s": null,
+     "first_run_s": 74.734,
+     "runs": {
+      "n": 5,
+      "mean_s": 75.334,
+      "p50_s": 75.267,
+      "min_s": 75.039,
+      "max_s": 75.717,
+      "stdev_s": 0.256
+     },
+     "sliding_window": {
+      "n": 5,
+      "mean_s": 55.401,
+      "p50_s": 55.384,
+      "min_s": 55.27,
+      "max_s": 55.573,
+      "stdev_s": 0.111
+     },
+     "all_runs_s": [
+      74.734,
+      75.216,
+      75.039,
+      75.717,
+      75.267,
+      75.431
+     ],
+     "peak_rss_mb": 8502.3,
+     "device_info": {
+      "device": "cpu",
+      "torch_threads": 20
+     }
+    }
+   },
+   "compile_probe": [
+    {
+     "device": "CPU",
+     "mode": "default",
+     "compile_s": 0.185
+    },
+    {
+     "device": "CPU",
+     "mode": "default",
+     "compile_s": 0.165
+    },
+    {
+     "device": "CPU",
+     "mode": "default",
+     "compile_s": 0.163
+    },
+    {
+     "device": "NPU",
+     "mode": "default",
+     "compile_s": 0.601
+    },
+    {
+     "device": "NPU",
+     "mode": "default",
+     "compile_s": 0.587
+    },
+    {
+     "device": "NPU",
+     "mode": "default",
+     "compile_s": 0.582
+    },
+    {
+     "device": "NPU",
+     "mode": "bypass",
+     "compile_s": 1.876
+    },
+    {
+     "device": "NPU",
+     "mode": "bypass",
+     "compile_s": 1.847
+    },
+    {
+     "device": "NPU",
+     "mode": "bypass",
+     "compile_s": 1.837
+    }
+   ]
+  }
+ }
+}

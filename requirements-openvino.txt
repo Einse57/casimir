@@ -1,0 +1,6 @@
+# Optional OpenVINO / ONNX Runtime path. Same as `pip install -e ".[openvino]"`.
+# Install after `pip install -e .`; the default PyTorch inference does not need these.
+openvino>=2024.0,<2027
+onnx>=1.16
+onnxruntime>=1.18
+psutil>=5.9

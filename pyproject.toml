@@ -28,6 +28,16 @@ dependencies = [
     "huggingface_hub",
 ]
 
+[project.optional-dependencies]
+# Experimental OpenVINO / ONNX Runtime path (casimir_ov, scripts/*openvino*). Not needed
+# for the default PyTorch inference.
+openvino = [
+    "openvino>=2024.0,<2027",
+    "onnx>=1.16",
+    "onnxruntime>=1.18",
+    "psutil>=5.9",
+]
+
 [project.scripts]
 casimir = "casimir.main:main"
 
