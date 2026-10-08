@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Export CASIMIR nnU-Net fold_all network to ONNX + OpenVINO IR."""
+"""Export the CASIMIR nnU-Net fold_all network to ONNX + OpenVINO IR."""
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -13,21 +14,20 @@ from casimir_ov.ov_network import export_casimir_onnx_and_ir
 
 
 def main(argv=None):
-    p = argparse.ArgumentParser()
-    p.add_argument("--weights", type=Path, default=ROOT / "weights_local")
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--weights", type=Path, default=None,
+                   help="weights directory (default: CASIMIR_WEIGHTS_PATH or HF download)")
     p.add_argument("--outdir", type=Path, default=ROOT / "openvino_models")
+    p.add_argument("--fp16-weights", action="store_true",
+                   help="store IR weights as FP16 (half the size; CPU/GPU f32 results drift)")
     args = p.parse_args(argv)
-    try:
-        meta = export_casimir_onnx_and_ir(args.weights, args.outdir)
-        print(meta)
-    except Exception as e:
-        import json
-        args.outdir.mkdir(parents=True, exist_ok=True)
-        (args.outdir / "export_failure.json").write_text(
-            json.dumps({"status": "failed", "error": repr(e)}, indent=2)
-        )
-        print("EXPORT FAILED:", e, file=sys.stderr)
-        raise
+    if args.weights is None:
+        from casimir import config
+
+        args.weights = config.ensure_weights()
+    meta = export_casimir_onnx_and_ir(args.weights, args.outdir,
+                                      compress_to_fp16=args.fp16_weights)
+    print(json.dumps(meta, indent=2))
 
 
 if __name__ == "__main__":

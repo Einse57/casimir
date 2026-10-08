@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Reference CPU inference smoke for CASIMIR (box-only)."""
+"""Reference segmentation with the default CASIMIR PyTorch CPU path."""
+from __future__ import annotations
+
+import argparse
 import json
-import resource
 import time
 from pathlib import Path
 
@@ -10,37 +12,26 @@ import numpy as np
 
 from casimir import inference
 
-ROOT = Path(__file__).resolve().parents[1]
-INP = ROOT / "data/smoke/smoke_exam_0000.nii.gz"
-OUT = ROOT / "data/ref_out"
-WEIGHTS = ROOT / "weights_local"
 
+def main(argv=None):
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("-i", "--input", type=Path, required=True)
+    p.add_argument("-o", "--outdir", type=Path, default=Path("ref_out"))
+    p.add_argument("--model-dir", default=None)
+    args = p.parse_args(argv)
 
-def main():
     t0 = time.perf_counter()
-    outs = inference.infer(
-        str(INP),
-        str(OUT),
-        device="cpu",
-        model_dir=str(WEIGHTS),
-        verbose=True,
-    )
+    outs = inference.infer(str(args.input), str(args.outdir), device="cpu",
+                           model_dir=args.model_dir)
     elapsed = time.perf_counter() - t0
-    peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    img = nib.load(str(outs[0]))
-    data = np.asanyarray(img.dataobj)
-    counts = {int(u): int((data == u).sum()) for u in np.unique(data)}
-    stats = {
-        "elapsed_sec": elapsed,
-        "peak_rss_kb": peak,
+    data = np.asanyarray(nib.load(str(outs[0])).dataobj)
+    labels, counts = np.unique(data, return_counts=True)
+    print(json.dumps({
+        "input": args.input.name,
+        "elapsed_s": round(elapsed, 2),
         "shape": list(data.shape),
-        "unique_labels": [int(x) for x in np.unique(data)],
-        "label_counts": counts,
-        "nonzero": int(np.count_nonzero(data)),
-        "output": str(outs[0]),
-    }
-    (ROOT / "data/ref_stats.json").write_text(json.dumps(stats, indent=2))
-    print(json.dumps(stats, indent=2))
+        "label_voxels": {int(k): int(v) for k, v in zip(labels, counts)},
+    }, indent=2))
 
 
 if __name__ == "__main__":

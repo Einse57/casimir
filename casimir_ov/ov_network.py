@@ -1,45 +1,95 @@
 """Torch-module-shaped wrapper around an OpenVINO-compiled CASIMIR 2D network."""
 from __future__ import annotations
 
+import contextlib
+import time
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
 import numpy as np
 import torch
-import torch.nn as nn
+from torch import nn
+
+# Devices on which INFERENCE_PRECISION_HINT=f32 is honoured. The NPU plugin runs FP16.
+_F32_CAPABLE = {"CPU", "GPU"}
+
+
+def resolve_precision(device: str, precision: str | None) -> str | None:
+    """Return the INFERENCE_PRECISION_HINT to set for ``device``, or None to keep the
+    plugin default.
+
+    ``"auto"`` (default) pins f32 on CPU and GPU, because the plugin defaults (bf16 on
+    CPUs with AMX/AVX512-BF16, f16 on GPU) shift InstanceNorm logits enough to flip
+    some argmax voxels. NPU keeps its default (FP16).
+    """
+    if precision is None or precision == "default":
+        return None
+    precision = precision.lower()
+    if precision == "auto":
+        return "f32" if device.split(".")[0] in _F32_CAPABLE else None
+    return precision
 
 
 class OpenVINONetwork(nn.Module):
     """Drop-in forward() replacement for the nnU-Net PlainConvUNet used by CASIMIR.
 
-    Compiles casimir_2d.xml for device in {CPU, GPU, NPU}. Box smoke uses CPU only;
-    GPU/NPU are accepted so the same CLI works on Core Ultra / discrete targets later.
-
-    load_state_dict is a no-op so nnUNetPredictor's fold loop still works (weights are
-    already baked into the IR).
+    Compiles ``casimir_2d.xml`` for an OpenVINO device (``CPU``, ``GPU``, ``NPU``).
+    ``load_state_dict`` is a no-op so nnUNetPredictor's fold loop still works (the
+    weights are baked into the IR).
     """
 
-    def __init__(self, model_xml: str | Path, device: str = "CPU"):
+    def __init__(
+        self,
+        model_xml: str | Path,
+        device: str = "CPU",
+        precision: str | None = "auto",
+        allow_fallback: bool = True,
+        config: Mapping[str, Any] | None = None,
+    ):
         super().__init__()
         import openvino as ov
 
         device = device.upper()
-        self.device_name = device
         self.core = ov.Core()
         available = list(self.core.available_devices)
-        if device not in available:
-            if device in {"GPU", "NPU"} and "CPU" in available:
+        self.fallback_note = None
+        if device.split(".")[0] not in {d.split(".")[0] for d in available}:
+            if allow_fallback and "CPU" in available:
                 self.fallback_note = f"{device} unavailable; using CPU (have {available})"
                 device = "CPU"
             else:
                 raise RuntimeError(
                     f"OpenVINO device {device!r} not available; have {available}"
                 )
-        else:
-            self.fallback_note = None
         self.device_name = device
-        self.compiled = self.core.compile_model(str(model_xml), device)
+        cfg = dict(config or {})
+        hint = resolve_precision(device, precision)
+        if hint is not None:
+            cfg.setdefault("INFERENCE_PRECISION_HINT", hint)
+        self.config = cfg
+        t0 = time.perf_counter()
+        self.compiled = self.core.compile_model(str(model_xml), device, cfg)
+        self.compile_s = time.perf_counter() - t0
         self._req = self.compiled.create_infer_request()
+
+    def describe(self) -> dict:
+        """Device name and the compiled-model properties that matter for results."""
+        info = {"device": self.device_name, "config": dict(self.config)}
+        with contextlib.suppress(RuntimeError):  # plugin dependent
+            info["full_device_name"] = self.core.get_property(
+                self.device_name, "FULL_DEVICE_NAME"
+            )
+        for key in (
+            "INFERENCE_PRECISION_HINT",
+            "PERFORMANCE_HINT",
+            "NUM_STREAMS",
+            "INFERENCE_NUM_THREADS",
+            "EXECUTION_DEVICES",
+        ):
+            with contextlib.suppress(RuntimeError):
+                info[key] = str(self.compiled.get_property(key))
+        return info
 
     def load_state_dict(self, state_dict: Mapping[str, Any], strict: bool = True):
         return
@@ -62,12 +112,17 @@ def export_casimir_onnx_and_ir(
     weights_dir: str | Path,
     outdir: str | Path,
     opset: int = 17,
+    compress_to_fp16: bool = False,
 ) -> dict:
-    """Export fold_all PlainConvUNet to ONNX + OpenVINO IR.
+    """Export the fold_all PlainConvUNet to ONNX + OpenVINO IR.
 
     IMPORTANT: nnUNetPredictor.initialize_from_trained_model_folder builds a random
     network and only stores weights in list_of_parameters; we must load_state_dict
     before export or the ONNX/IR will contain uninitialized weights.
+
+    The IR keeps FP32 weights by default (``compress_to_fp16=False``), so CPU/GPU runs
+    with INFERENCE_PRECISION_HINT=f32 compute with the original weights. NPU converts to
+    FP16 at compile time either way.
     """
     import json
 
@@ -94,7 +149,9 @@ def export_casimir_onnx_and_ir(
     pred.network.load_state_dict(pred.list_of_parameters[0])
     net = pred.network.eval()
     patch = list(pred.configuration_manager.patch_size)
-    dummy = torch.randn(1, 1, *patch, dtype=torch.float32)
+    dummy = torch.from_numpy(
+        np.random.default_rng(0).standard_normal((1, 1, *patch)).astype(np.float32)
+    )
 
     onnx_path = outdir / "casimir_2d.onnx"
     with torch.no_grad():
@@ -118,51 +175,32 @@ def export_casimir_onnx_and_ir(
     with torch.no_grad():
         torch_out = net(dummy).numpy()
     ort_out = sess.run(None, {"input": dummy.numpy()})[0]
-    onnx_max_abs = float(np.max(np.abs(torch_out - ort_out)))
-    onnx_argmax = float((torch_out.argmax(1) == ort_out.argmax(1)).mean())
 
     ov_model = ov.convert_model(str(onnx_path))
     xml_path = outdir / "casimir_2d.xml"
-    ov.save_model(ov_model, str(xml_path))
+    ov.save_model(ov_model, str(xml_path), compress_to_fp16=compress_to_fp16)
 
     core = ov.Core()
-    compiled = core.compile_model(ov_model, "CPU")
+    compiled = core.compile_model(str(xml_path), "CPU", {"INFERENCE_PRECISION_HINT": "f32"})
     req = compiled.create_infer_request()
     req.infer({0: dummy.numpy()})
     ov_out = np.array(req.get_output_tensor(0).data)
-    ov_max_abs = float(np.max(np.abs(torch_out - ov_out)))
-    argmax_agree = float((torch_out.argmax(1) == ov_out.argmax(1)).mean())
-
-    # padded-tile stress (nnU-Net pads to patch_size)
-    pad = np.zeros((1, 1, *patch), dtype=np.float32)
-    pad[0, 0, 50:122, 20:134] = np.random.default_rng(0).normal(0, 1, (72, 114)).astype(
-        np.float32
-    )
-    with torch.no_grad():
-        tpad = net(torch.from_numpy(pad)).numpy()
-    opad = sess.run(None, {"input": pad})[0]
-    req.infer({0: pad})
-    ovpad = np.array(req.get_output_tensor(0).data)
 
     meta = {
         "patch_size": patch,
         "num_classes": int(torch_out.shape[1]),
-        "onnx": str(onnx_path),
-        "ir_xml": str(xml_path),
-        "ir_bin": str(outdir / "casimir_2d.bin"),
-        "onnx_mb": onnx_path.stat().st_size / 1e6,
-        "onnx_vs_torch_max_abs": onnx_max_abs,
-        "onnx_vs_torch_argmax_agree": onnx_argmax,
-        "ov_vs_torch_max_abs": ov_max_abs,
-        "ov_vs_torch_argmax_agree": argmax_agree,
-        "padded_ort_argmax_agree": float((tpad.argmax(1) == opad.argmax(1)).mean()),
-        "padded_ov_argmax_agree": float((tpad.argmax(1) == ovpad.argmax(1)).mean()),
-        "openvino_version": ov.__version__,
-        "devices": core.available_devices,
-        "note": (
-            "Weights loaded via list_of_parameters[0] before export. "
-            "ONNX Runtime matches torch; OpenVINO may show InstanceNorm logit drift."
+        "opset": opset,
+        "ir_weights": "fp16" if compress_to_fp16 else "fp32",
+        "onnx_mb": round(onnx_path.stat().st_size / 1e6, 1),
+        "ir_bin_mb": round((outdir / "casimir_2d.bin").stat().st_size / 1e6, 1),
+        "onnx_vs_torch_max_abs": float(np.max(np.abs(torch_out - ort_out))),
+        "onnx_vs_torch_argmax_agree": float((torch_out.argmax(1) == ort_out.argmax(1)).mean()),
+        "ov_cpu_f32_vs_torch_max_abs": float(np.max(np.abs(torch_out - ov_out))),
+        "ov_cpu_f32_vs_torch_argmax_agree": float(
+            (torch_out.argmax(1) == ov_out.argmax(1)).mean()
         ),
+        "openvino_version": ov.__version__,
+        "torch_version": torch.__version__,
     }
     (outdir / "export_meta.json").write_text(json.dumps(meta, indent=2))
     return meta

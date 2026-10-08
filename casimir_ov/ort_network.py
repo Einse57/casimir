@@ -1,13 +1,14 @@
 """ONNX Runtime drop-in network (numerically matches torch; used for agreement)."""
 from __future__ import annotations
 
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
 import numpy as np
-import torch
-import torch.nn as nn
 import onnxruntime as ort
+import torch
+from torch import nn
 
 
 class ONNXRuntimeNetwork(nn.Module):
