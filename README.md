@@ -51,6 +51,18 @@ with the voxel values listed below. One whole-body examination takes about 1.5 m
 an RTX 4090 or on an Apple M2 Pro with `--device mps`, and about 4 minutes on the M2 Pro
 with `--device cpu`.
 
+## OpenVINO (optional)
+
+An optional path runs the network with OpenVINO on an Intel CPU, GPU or NPU:
+
+```bash
+pip install -e ".[openvino]"
+python -m casimir_ov -i <nifti file or directory> -o <output directory> --device NPU
+```
+
+[OPENVINO.md](OPENVINO.md) describes it, with the hardware it was tested on and its
+agreement with the default inference.
+
 ## Structures
 
 The 13 structures give 20 labels, one per side for the paired ones:
