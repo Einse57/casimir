@@ -118,6 +118,7 @@ Felix J. Horvath was supported by a travel grant from the Rolf W. Günther Found
 
 ## OpenVINO (experimental)
 
-See [OPENVINO.md](OPENVINO.md) for ONNX/OpenVINO export, `--device CPU|GPU|NPU` inference,
-agreement checks, and the box bench script. This is a fork experiment aimed at beating the
-~4 min/exam M2 Pro CPU baseline on later Core/Xeon runs.
+An optional OpenVINO inference path for Intel CPU, GPU and NPU is described in
+[OPENVINO.md](OPENVINO.md), with the hardware it was tested on and its agreement with the
+default PyTorch path. Install it with `pip install -e ".[openvino]"`; the default inference
+does not need it.

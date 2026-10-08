@@ -4,19 +4,14 @@
     192
   ],
   "num_classes": 21,
-  "onnx": "/workspace/casimir/openvino_models/casimir_2d.onnx",
-  "ir_xml": "/workspace/casimir/openvino_models/casimir_2d.xml",
-  "ir_bin": "/workspace/casimir/openvino_models/casimir_2d.bin",
-  "onnx_mb": 131.816108,
-  "onnx_vs_torch_max_abs": 0.00012493133544921875,
+  "opset": 17,
+  "ir_weights": "fp32",
+  "onnx_mb": 131.8,
+  "ir_bin_mb": 131.8,
+  "onnx_vs_torch_max_abs": 0.000125885009765625,
   "onnx_vs_torch_argmax_agree": 1.0,
-  "ov_vs_torch_max_abs": 7.206381797790527,
-  "ov_vs_torch_argmax_agree": 0.9999287923177084,
-  "padded_ort_argmax_agree": 1.0,
-  "padded_ov_argmax_agree": 1.0,
+  "ov_cpu_f32_vs_torch_max_abs": 0.000274658203125,
+  "ov_cpu_f32_vs_torch_argmax_agree": 1.0,
   "openvino_version": "2026.4.1-22982-e213a147257-releases/2026/4",
-  "devices": [
-    "CPU"
-  ],
-  "note": "Weights loaded via list_of_parameters[0] before export. ONNX Runtime matches torch; OpenVINO may show InstanceNorm logit drift."
+  "torch_version": "2.14.1+cu130"
 }
